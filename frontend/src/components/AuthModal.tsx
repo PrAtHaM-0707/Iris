@@ -201,7 +201,7 @@ export function AuthModal({ isOpen, onClose, defaultMode = 'login' }: AuthModalP
           onSuccess={handleGoogleAuthSuccess}
           onError={handleGoogleAuthError}
           useOneTap
-          width="360"
+          width="100%"
         />
 
         <div className="relative">
@@ -283,7 +283,7 @@ export function AuthModal({ isOpen, onClose, defaultMode = 'login' }: AuthModalP
             </div>
           </div>
 
-          {isLogin && (
+          {/* {isLogin && (
             <div className="text-right">
               <button
                 type="button"
@@ -296,7 +296,7 @@ export function AuthModal({ isOpen, onClose, defaultMode = 'login' }: AuthModalP
                 Forgot password?
               </button>
             </div>
-          )}
+          )} */}
 
           <Button 
             type="submit" 
