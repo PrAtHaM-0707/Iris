@@ -6,6 +6,7 @@ import { OAuth2Client } from 'google-auth-library';
 import { User } from '../models/User';
 import { sendResetEmail } from '../services/emailService';
 import { AuthRequest } from '../types/authRequest';
+import { AppDataSource } from '../server';
 
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
@@ -13,7 +14,7 @@ export const register = async (req: Request, res: Response) => {
   try {
     const { email, password, name } = req.body;
     console.log('Register request:', { email, name });
-    const userRepo = getRepository(User);
+    const userRepo = AppDataSource.getRepository(User);
 
     const existingUser = await userRepo.findOne({ where: { email } });
     if (existingUser) {
@@ -56,7 +57,7 @@ export const login = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
     console.log('Login request:', { email });
-    const userRepo = getRepository(User);
+    const userRepo = AppDataSource.getRepository(User);
 
     const user = await userRepo.findOne({ where: { email } });
     if (!user) {
@@ -121,7 +122,7 @@ export const googleAuth = async (req: Request, res: Response) => {
       return res.status(400).json({ message: 'Email not provided by Google' });
     }
 
-    const userRepo = getRepository(User);
+    const userRepo = AppDataSource.getRepository(User);
     let user = await userRepo.findOne({ where: { email } });
 
     if (!user) {
@@ -173,7 +174,7 @@ export const forgotPassword = async (req: Request, res: Response) => {
   try {
     const { email } = req.body;
     console.log('Forgot password request:', { email });
-    const userRepo = getRepository(User);
+    const userRepo = AppDataSource.getRepository(User);
 
     const user = await userRepo.findOne({ where: { email } });
     if (!user) {
@@ -203,7 +204,7 @@ export const getCurrentUser = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user!.id;
     console.log('Fetching current user:', userId);
-    const userRepo = getRepository(User);
+    const userRepo = AppDataSource.getRepository(User);
     const user = await userRepo.findOne({ where: { id: userId } });
     if (!user) {
       console.log('User not found:', userId);
