@@ -200,7 +200,6 @@ export function AuthModal({ isOpen, onClose, defaultMode = 'login' }: AuthModalP
         <GoogleLogin
           onSuccess={handleGoogleAuthSuccess}
           onError={handleGoogleAuthError}
-          useOneTap
           width="360"
         />
 </div>
