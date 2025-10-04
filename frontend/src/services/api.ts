@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: 'https://iris-7k7h.onrender.com/api',
   // Removed default Content-Type to allow Axios to set multipart/form-data for FormData
 });
 
