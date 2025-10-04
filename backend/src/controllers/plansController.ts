@@ -6,6 +6,7 @@ import { Credits } from '../models/Credits';
 import { User } from '../models/User';
 import dotenv from 'dotenv';
 import cron from 'node-cron';
+import { AppDataSource } from '../server';
 
 dotenv.config();
 
@@ -28,7 +29,7 @@ const DAILY_CREDITS: Record<string, number> = {
 cron.schedule('0 0 * * *', async () => {
   try {
     console.log('Running daily credits reset at 12 AM IST');
-    const creditsRepo = getRepository(Credits);
+    const creditsRepo = AppDataSource.getRepository(Credits);
     const creditsList = await creditsRepo.find({ relations: ['user'] });
     const now = new Date();
     for (const credits of creditsList) {
@@ -54,11 +55,11 @@ export const getPlan = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user!.id;
     console.log('Fetching plan for user:', userId);
-    const creditsRepo = getRepository(Credits);
+    const creditsRepo = AppDataSource.getRepository(Credits);
     let credits = await creditsRepo.findOne({ where: { user: { id: userId } }, relations: ['user'] });
     if (!credits) {
       console.log('No credits found for user:', userId, 'Creating default credits');
-      const userRepo = getRepository(User);
+      const userRepo = AppDataSource.getRepository(User);
       const user = await userRepo.findOne({ where: { id: userId } });
       if (!user) {
         console.log('User not found:', userId);
@@ -134,8 +135,8 @@ export const subscribePlan = async (req: AuthRequest, res: Response) => {
       return res.status(500).json({ message: 'Failed to create Razorpay order', error: razorpayError.message || String(razorpayError) });
     }
 
-    const creditsRepo = getRepository(Credits);
-    const userRepo = getRepository(User);
+    const creditsRepo = AppDataSource.getRepository(Credits);
+    const userRepo = AppDataSource.getRepository(User);
     const user = await userRepo.findOne({ where: { id: userId } });
     if (!user) {
       console.log('User not found:', userId);
@@ -169,7 +170,7 @@ export const updateCredits = async (req: AuthRequest, res: Response) => {
     const { amount } = req.body;
     const userId = req.user!.id;
     console.log(`Updating credits for user ${userId}, deducting ${amount}`);
-    const creditsRepo = getRepository(Credits);
+    const creditsRepo = AppDataSource.getRepository(Credits);
     const credits = await creditsRepo.findOne({ where: { user: { id: userId } } });
     if (!credits) {
       console.log('Credits not found for user:', userId);

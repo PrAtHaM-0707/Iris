@@ -5,13 +5,14 @@ import { ChatHistory } from '../models/ChatHistory';
 import { Message } from '../models/Message';
 import { User } from '../models/User';
 import OpenAI from 'openai';
+import { AppDataSource } from '../server';
 
 export const createChat = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user!.id;
     console.log('Creating chat for user:', userId);
-    const chatRepo = getRepository(ChatHistory);
-    const userRepo = getRepository(User);
+    const chatRepo = AppDataSource.getRepository(ChatHistory);
+    const userRepo = AppDataSource.getRepository(User);
     const user = await userRepo.findOne({ where: { id: userId } });
     if (!user) {
       console.log('User not found:', userId);
@@ -31,7 +32,7 @@ export const getChats = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user!.id;
     console.log('Fetching chats for user:', userId);
-    const chatRepo = getRepository(ChatHistory);
+    const chatRepo = AppDataSource.getRepository(ChatHistory);
     const chats = await chatRepo.find({ where: { user: { id: userId } }, relations: ['messages'] });
     console.log('Fetched', chats.length, 'chats for user:', userId);
     res.json(chats);
@@ -46,7 +47,7 @@ export const getChat = async (req: AuthRequest, res: Response) => {
     const { id } = req.params;
     const userId = req.user!.id;
     console.log('Fetching chat:', id, 'for user:', userId);
-    const chatRepo = getRepository(ChatHistory);
+    const chatRepo = AppDataSource.getRepository(ChatHistory);
     const chat = await chatRepo.findOne({ where: { id, user: { id: userId } }, relations: ['messages'] });
     if (!chat) {
       console.log('Chat not found:', id);
@@ -65,8 +66,8 @@ export const deleteChat = async (req: AuthRequest, res: Response) => {
     const { id } = req.params;
     const userId = req.user!.id;
     console.log('Deleting chat:', id, 'for user:', userId);
-    const chatRepo = getRepository(ChatHistory);
-    const messageRepo = getRepository(Message);
+    const chatRepo = AppDataSource.getRepository(ChatHistory);
+    const messageRepo = AppDataSource.getRepository(Message);
     const chat = await chatRepo.findOne({ where: { id, user: { id: userId } }, relations: ['messages'] });
     if (!chat) {
       console.log('Chat not found:', id);
@@ -92,8 +93,8 @@ export const sendMessage = async (req: AuthRequest, res: Response) => {
     const { content, images } = req.body;
     const userId = req.user!.id;
     console.log('Sending message to chat:', id, 'content:', content, 'images:', images, 'user:', userId);
-    const chatRepo = getRepository(ChatHistory);
-    const messageRepo = getRepository(Message);
+    const chatRepo = AppDataSource.getRepository(ChatHistory);
+    const messageRepo = AppDataSource.getRepository(Message);
     const chat = await chatRepo.findOne({ where: { id, user: { id: userId } } });
     if (!chat) {
       console.log('Chat not found:', id);

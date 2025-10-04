@@ -4,6 +4,7 @@ import { getRepository } from 'typeorm';
 import { User } from '../models/User';
 import { v2 as cloudinary } from 'cloudinary';
 import dotenv from 'dotenv';
+import { AppDataSource } from '../server';
 dotenv.config();
 
 // Configure Cloudinary
@@ -17,7 +18,7 @@ export const updateProfile = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user!.id;
     const updates = req.body;
-    const userRepo = getRepository(User);
+    const userRepo = AppDataSource.getRepository(User);
     await userRepo.update(userId, updates);
     const updatedUser = await userRepo.findOne({ where: { id: userId } });
     if (!updatedUser) return res.status(404).json({ message: 'User not found' });
@@ -33,7 +34,7 @@ export const uploadAvatar = async (req: AuthRequest, res: Response) => {
     console.log('Server: uploadAvatar - Request received for user ID:', req.user!.id);
     console.log('Server: uploadAvatar - Headers:', req.headers);
     const userId = req.user!.id;
-    const userRepo = getRepository(User);
+    const userRepo = AppDataSource.getRepository(User);
     const user = await userRepo.findOne({ where: { id: userId } });
     if (!user) {
       console.log('Server: uploadAvatar - User not found for ID:', userId);
