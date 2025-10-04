@@ -196,14 +196,14 @@ export function AuthModal({ isOpen, onClose, defaultMode = 'login' }: AuthModalP
             {isLogin ? 'Sign in to your account' : 'Sign up to get started'}
           </p>
         </DialogHeader>
-
+      <div className="flex justify-center mt-2 mb-2">
         <GoogleLogin
           onSuccess={handleGoogleAuthSuccess}
           onError={handleGoogleAuthError}
           useOneTap
-          width="100%"
+          width="360"
         />
-
+</div>
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
             <Separator className="w-full" />
@@ -289,7 +289,7 @@ export function AuthModal({ isOpen, onClose, defaultMode = 'login' }: AuthModalP
                 type="button"
                 onClick={() => {
                   console.log('Forgot password link clicked');
-                  setShowForgotPassword(true);
+                  setShowForgotPassword(sitrue);
                 }}
                 className="text-sm text-primary hover:underline"
               >
