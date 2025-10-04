@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ChatGPT-like Design System - All colors MUST be HSL */
+
+@layer base {
+  :root {
+    /* Main backgrounds */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 15%;
+    
+    /* Chat specific colors */
+    --chat-background: 0 0% 100%;
+    --chat-user-message: 0 0% 96%;
+    --chat-ai-message: 0 0% 100%;
+    --chat-user-text: 0 0% 15%;
+    --chat-ai-text: 0 0% 15%;
+    
+    /* Sidebar colors */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 20%;
+    --sidebar-hover: 0 0% 94%;
+    --sidebar-active: 214 100% 97%;
+    --sidebar-border: 0 0% 90%;
+    
+    /* UI components */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 15%;
+    
+    /* Brand colors */
+    --primary: 214 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 214 100% 45%;
+    
+    /* Interactive states */
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 15%;
+    --secondary-hover: 0 0% 92%;
+    
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 50%;
+    
+    --accent: 214 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Form elements */
+    --border: 0 0% 88%;
+    --input: 0 0% 100%;
+    --input-border: 0 0% 88%;
+    --input-focus: 214 100% 50%;
+    --ring: 214 100% 50%;
+    
+    --radius: 0.75rem;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(214 100% 50%), hsl(214 100% 60%));
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(0 0% 98%));
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.1);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.1);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    /* Main backgrounds */
+    --background: 0 0% 8%;
+    --foreground: 0 0% 95%;
+    
+    /* Chat specific colors */
+    --chat-background: 0 0% 8%;
+    --chat-user-message: 214 15% 15%;
+    --chat-ai-message: 0 0% 12%;
+    --chat-user-text: 0 0% 95%;
+    --chat-ai-text: 0 0% 95%;
+    
+    /* Sidebar colors */
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 0 0% 80%;
+    --sidebar-hover: 0 0% 12%;
+    --sidebar-active: 214 50% 15%;
+    --sidebar-border: 0 0% 15%;
+    
+    /* UI components */
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 95%;
+    
+    /* Brand colors */
+    --primary: 214 100% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 214 100% 60%;
+    
+    /* Interactive states */
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 95%;
+    --secondary-hover: 0 0% 20%;
+    
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+    
+    --accent: 214 100% 55%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Form elements */
+    --border: 0 0% 20%;
+    --input: 0 0% 12%;
+    --input-border: 0 0% 20%;
+    --input-focus: 214 100% 55%;
+    --ring: 214 100% 55%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(214 100% 55%), hsl(214 100% 65%));
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 8%), hsl(0 0% 6%));
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.3);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.4);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.5);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    transition: var(--transition-smooth);
+  }
+  
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/40;
+  }
+}
+
+@layer components {
+  /* Chat message animations */
+  .message-slide-in {
+    animation: messageSlideIn 0.3s ease-out;
+  }
+  
+  @keyframes messageSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Typing indicator */
+  .typing-dots {
+    animation: typingDots 1.4s infinite;
+  }
+  
+  @keyframes typingDots {
+    0%, 60%, 100% { opacity: 0.3; }
+    30% { opacity: 1; }
+  }
+  
+  /* Hover animations */
+  .hover-scale {
+    transition: var(--transition-fast);
+  }
+  
+  .hover-scale:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Fade transitions */
+  .fade-in {
+    animation: fadeIn 0.2s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
