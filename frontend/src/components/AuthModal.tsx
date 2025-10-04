@@ -193,10 +193,10 @@ export function AuthModal({ isOpen, onClose, defaultMode = 'login' }: AuthModalP
             {isLogin ? 'Welcome back' : 'Create account'}
           </DialogTitle>
           <p id="auth-dialog-description" className="text-center text-muted-foreground mt-2">
-            {isLogin ? 'Sign in to your account' : 'Sign up to get started'}
+            {isLogin ? 'Sign in to your account' : ''}
           </p>
         </DialogHeader>
-      <div className="flex justify-center mt-2 mb-2">
+      <div className="flex justify-center">
         <GoogleLogin
           onSuccess={handleGoogleAuthSuccess}
           onError={handleGoogleAuthError}
@@ -230,6 +230,7 @@ export function AuthModal({ isOpen, onClose, defaultMode = 'login' }: AuthModalP
                   required={!isLogin}
                   className="pl-10 bg-input border-input-border focus:border-input-focus"
                 />
+                
               </div>
             </div>
           )}
@@ -316,6 +317,11 @@ export function AuthModal({ isOpen, onClose, defaultMode = 'login' }: AuthModalP
             >
               {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
             </button>
+            <p className="mt-3 text-xs text-gray-500 text-center bg-yellow-50 border border-yellow-300 rounded-lg p-2 max-w-sm mx-auto">
+  ⚡ This project is hosted on Render’s free tier.  
+  The backend may take 10–30 seconds to wake up after inactivity.  
+</p>
+
           </div>
         </form>
       </DialogContent>
