@@ -139,7 +139,7 @@ export default function Plans() {
           amount: order.amount,
           currency: order.currency,
           order_id: order.id,
-          name: 'ChatGPT Clone',
+          name: 'Iris AI',
           description: `${planName} Plan Subscription`,
           image: '/logo.png',
           handler: function (response: RazorpayResponse) {

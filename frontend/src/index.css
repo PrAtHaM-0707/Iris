@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ChatGPT-like Design System - All colors MUST be HSL */
-
 @layer base {
   :root {
     /* Main backgrounds */

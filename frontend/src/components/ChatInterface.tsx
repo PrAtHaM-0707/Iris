@@ -76,7 +76,7 @@ export function ChatInterface() {
         {!currentChat || currentChat.messages.length === 0 ? (
           <div className="flex items-center justify-center h-full">
             <div className="text-center">
-              <h3 className="text-2xl font-semibold text-foreground mb-4">Welcome to ChatGPT</h3>
+              <h3 className="text-2xl font-semibold text-foreground mb-4">Welcome to Iris AI</h3>
               <p className="text-muted-foreground mb-8">Start a conversation by typing a message below</p>
             </div>
           </div>
@@ -111,7 +111,7 @@ export function ChatInterface() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Message ChatGPT..."
+            placeholder="Message Iris AI..."
             className="w-full min-h-[60px] max-h-28 resize-none pr-16 pl-4 py-2 border border-input-border rounded-xl focus:ring-1 focus:ring-input-focus focus:border-input-focus transition-colors"
           />
 

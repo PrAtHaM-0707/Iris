@@ -51,7 +51,7 @@ export function AuthModal({ isOpen, onClose, defaultMode = 'login' }: AuthModalP
         console.log('Register toast triggered');
         toast({
           title: "Account created!",
-          description: "Welcome to ChatGPT. You can now start chatting.",
+          description: "Welcome to Iris AI. You can now start chatting.",
         });
       }
       onClose();

@@ -42,7 +42,7 @@ export function Sidebar() {
           {/* Header */}
           <div className="flex items-center justify-between p-2 border-b border-sidebar-border">
             {!isCollapsed && (
-              <h1 className="text-lg font-semibold text-sidebar-foreground">ChatGPT</h1>
+              <h1 className="text-lg font-semibold text-sidebar-foreground">Iris AI</h1>
             )}
             <Button
               variant="ghost"

@@ -55,9 +55,9 @@ const Index = () => {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-                <Bot className="h-5 w-5 text-primary-foreground" />
+                <Bot className="h-5 w-5 text-primary-foreground" aria-label="Iris AI Logo" />
               </div>
-              <h1 className="text-xl font-bold text-foreground">ChatGPT</h1>
+              <h1 className="text-xl font-bold text-foreground">Iris AI</h1>
             </div>
             
             <div className="flex items-center space-x-4">
@@ -91,7 +91,7 @@ const Index = () => {
           <h1 className="text-5xl sm:text-6xl font-bold text-foreground mb-6 leading-tight">
             Chat with AI.<br />
             <span className="bg-gradient-primary bg-clip-text text-transparent">
-              Get things done.
+              Powered by Iris AI.
             </span>
           </h1>
           
@@ -182,10 +182,10 @@ const Index = () => {
               <div className="w-6 h-6 bg-gradient-primary rounded flex items-center justify-center">
                 <Bot className="h-4 w-4 text-primary-foreground" />
               </div>
-              <span className="text-foreground font-semibold">ChatGPT</span>
+              <span className="text-foreground font-semibold">Iris AI</span>
             </div>
             <div className="text-muted-foreground text-sm">
-              © 2024 ChatGPT. All rights reserved.
+              © 2025 Iris AI. All rights reserved.
             </div>
           </div>
         </div>
