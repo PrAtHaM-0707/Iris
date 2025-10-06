@@ -55,7 +55,7 @@ Iris AI is a full-stack MERN chatbot application that enables users to chat with
 
 ```sh
 git clone https://github.com/PrAtHaM-0707/Iris.git
-cd mern-chatbot
+cd Iris
 ```
 
 #### 2. Configure Environment Variables
